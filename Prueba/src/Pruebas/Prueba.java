@@ -1,0 +1,62 @@
+package Pruebas;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
+
+	
+	class LeeFichero {
+		   public static void main(String [] arg) {
+		      File archivo = null;
+		      FileReader fr = null;
+		      BufferedReader br = null;
+		      String path = "res/quijote.txt";
+		 
+		      try {
+		         // Apertura del fichero y creacion de BufferedReader para poder
+		         // hacer una lectura comoda (disponer del metodo readLine()).
+		         archivo = new File (path);
+		         fr = new FileReader (archivo);
+		         br = new BufferedReader(fr);
+		 
+		         // Lectura del fichero
+		         String linea;
+		         int i,a=0;
+		         
+		         while((linea=br.readLine())!=null){
+//		            System.out.println(linea);
+		        	 for(i=0;i<linea.length();i++){
+		        		 if(i==0){
+		        			 if(linea.charAt(i)!=' ')
+		        	     a++;
+		        	    }
+		        	    else
+		        	    {if(linea.charAt(i-1)==' ')
+		        	      if(linea.charAt(i)!=' ')	
+		        	        a++;
+		        	     
+		        	    }	
+		         }
+		      }
+		         System.out.println(a);
+		      }
+		      
+		      catch(Exception e){
+		         e.printStackTrace();
+		      }finally{
+		         // En el finally cerramos el fichero, para asegurarnos
+		         // que se cierra tanto si todo va bien como si salta 
+		         // una excepcion.
+		         try{                    
+		            if( null != fr ){   
+		               fr.close();     
+		            }                  
+		         }catch (Exception e2){ 
+		            e2.printStackTrace();
+		         }
+		      }
+		   }
+		}
+
+
